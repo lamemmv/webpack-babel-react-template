@@ -1,0 +1,19 @@
+{
+    "name": "react-template",
+    "version": "1.0.0",
+    "description": "This is simple react app tempate which can use for developing other react app",
+    "main": "index.js",
+    "scripts": {
+        "build": "webpack"
+    },
+    "keywords": [
+        "react",
+        "app",
+        "template"
+    ],
+    "author": "lamemmv",
+    "license": "ISC",
+    "devDependencies": {
+        "webpack": "^3.8.1"
+    }
+}
