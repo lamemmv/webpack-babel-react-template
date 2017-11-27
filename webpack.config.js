@@ -26,11 +26,6 @@ module.exports = {
         }),
         new ExtractTextPlugin('style.bundle.css'), // CSS will be extracted to this bundle file
     ],
-    // Dev server configuration 
-    // Now it uses our "src" folder as a starting point
-    // devServer: {
-    //     contentBase: paths.SRC,
-    // },
     // Loaders configuration 
     // We are telling webpack to use "babel-loader" for .js and .jsx files
     module: {

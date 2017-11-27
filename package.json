@@ -15,6 +15,7 @@
     "author": "lamemmv",
     "license": "ISC",
     "devDependencies": {
+        "antd": "^2.13.10",
         "babel-core": "^6.26.0",
         "babel-loader": "^7.1.2",
         "babel-preset-env": "^1.6.1",
@@ -27,6 +28,7 @@
         "webpack-dev-server": "^2.9.4"
     },
     "dependencies": {
+        "babel-plugin-import": "^1.6.2",
         "react": "^16.1.1",
         "react-dom": "^16.1.1"
     }

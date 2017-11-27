@@ -1,18 +1,22 @@
 import React, { Component } from 'react';
 import { render } from 'react-dom';
 
-import '../css/style.css'; 
-
+import { DatePicker } from 'antd';
+import { LocaleProvider } from 'antd';
+import enUS from 'antd/lib/locale-provider/en_US';
 import keenImage from '../assets/keen.png'; // Importing image
 
 export default class Hello extends Component {
     render() {
         return (
-            <div>
-                Hello from react
+            <LocaleProvider locale={enUS}>
+                <div>
+                    Hello from react
                 {/* ADDED IN THIS STEP */}
-                {/* <img src={ keenImage } alt='Commander Keen' /> */}
-            </div>
+                    {/* <img src={ keenImage } alt='Commander Keen' /> */}
+                    <DatePicker />
+                </div>
+            </LocaleProvider>
         );
     }
 }
