@@ -2,8 +2,10 @@
 // https://nodejs.org/api/path.html
 const path = require('path');
 
-const HtmlWebpackPlugin = require('html-webpack-plugin'); // Import our plugin 
+const CleanWebpackPlugin = require('clean-webpack-plugin');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
+
 // Constant with our paths
 const paths = {
     DIST: path.resolve(__dirname, 'dist'),
@@ -11,21 +13,24 @@ const paths = {
     JS: path.resolve(__dirname, 'src/js'),
 };
 
-// Webpack configuration
 module.exports = {
-    entry: path.join(paths.JS, 'app.jsx'),
-    output: {
-        path: paths.DIST,
-        filename: 'app.bundle.js'
+    entry: {
+        app: path.join(paths.JS, 'app.jsx')
     },
-    // Tell webpack to use html plugin 
-    // index.html is used as a template in which it'll inject bundled app.
     plugins: [
+        new CleanWebpackPlugin(['dist']),
+        // Tell webpack to use html plugin 
+        // index.html is used as a template in which it'll inject bundled app. 
         new HtmlWebpackPlugin({
+            title: 'Production',
             template: path.join(paths.SRC, 'index.html'),
         }),
-        new ExtractTextPlugin('style.bundle.css'), // CSS will be extracted to this bundle file
+        new ExtractTextPlugin('style.bundle.css'),
     ],
+    output: {
+        filename: '[name].bundle.js',
+        path: paths.DIST
+    },
     // Loaders configuration 
     // We are telling webpack to use "babel-loader" for .js and .jsx files
     module: {
@@ -42,16 +47,18 @@ module.exports = {
             {
                 test: /\.css$/,
                 loader: ExtractTextPlugin.extract({
-                    use: 'css-loader',
+                    use: ['style-loader',
+                        'css-loader'
+                    ],
                 }),
             },
             // File loader for image assets 
             // We'll add only image extensions, but you can things like svgs, fonts and videos
             {
-              test: /\.(png|jpg|gif)$/,
-              use: [
-                'file-loader',
-              ],
+                test: /\.(png|jpg|gif)$/,
+                use: [
+                    'file-loader',
+                ],
             },
         ],
     },
